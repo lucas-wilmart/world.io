@@ -1,28 +1,28 @@
+interface TranslationObject {
+  official: string
+  common: string
+}
+
+interface Translations {
+  [key: string]: TranslationObject
+}
+
+interface CountryNameObject {
+  common: string
+  official: string
+  nativeName: Translations
+}
+
 export interface Country {
-  id: string
-  iso2Code: string
-  name: string
-  region: {
-    id: string
-    iso2code: string
-    value: string
+  cca2: string
+  name: CountryNameObject
+  capital: string[]
+  tld: string[]
+  region: string
+  subregion: string
+  translations: Translations
+  languages: {
+    [key: string]: string
   }
-  adminregion: {
-    id: string
-    iso2code: string
-    value: string
-  }
-  incomeLevel: {
-    id: string
-    iso2code: string
-    value: string
-  }
-  lendingType: {
-    id: string
-    iso2code: string
-    value: string
-  }
-  capitalCity: string
-  longitude: string
-  latitude: string
+  independent: boolean
 }

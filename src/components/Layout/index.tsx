@@ -20,7 +20,7 @@ export default Layout
 const LayoutContainer = styled.div`
   box-sizing: border-box;
   padding-top: ${({ theme }) => theme.layout.headerHeight}px;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.lightBlue};
   display: flex;

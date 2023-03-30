@@ -1,13 +1,30 @@
 import React from 'react'
-import { Country } from '../../types/country'
-import { CountryListContainer } from './styles'
+import styled from 'styled-components'
+import useCountriesService from '../../hooks/useCountriesService'
+import CountryCard from '../CountryCard'
 
-interface CountriesListProps {
-  countries: Country[]
-}
+interface CountriesListProps {}
 
 const CountriesList: React.FC<CountriesListProps> = ({}) => {
-  return <CountryListContainer></CountryListContainer>
+  const { countries, loading, error } = useCountriesService()
+
+  return (
+    <CountryListContainer>
+      {loading && <div>Chargement ...</div>}
+      {!loading &&
+        countries &&
+        countries.map((country) => {
+          return <CountryCard country={country} key={country.cca2} />
+        })}
+    </CountryListContainer>
+  )
 }
 
 export default CountriesList
+
+const CountryListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+`

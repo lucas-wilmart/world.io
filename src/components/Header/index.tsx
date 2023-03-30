@@ -26,6 +26,8 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-bottom: solid 1px ${({ theme }) => theme.colors.lightBlue};
 `
 
 const HeaderContent = styled.div`

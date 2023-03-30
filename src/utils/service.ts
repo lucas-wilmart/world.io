@@ -3,3 +3,5 @@ const service = async (endPoint: string) => {
 
   return result.json()
 }
+
+export default service
