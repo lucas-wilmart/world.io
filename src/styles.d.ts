@@ -8,6 +8,7 @@ declare module 'styled-components' {
       blue: string
       navy: string
       black: string
+      white: string
     }
     layout: {
       headerHeight: number

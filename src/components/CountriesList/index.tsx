@@ -16,6 +16,7 @@ const CountriesList: React.FC<CountriesListProps> = ({}) => {
         countries.map((country) => {
           return <CountryCard country={country} key={country.cca2} />
         })}
+      {error && <div>Un problème est survenu</div>}
     </CountryListContainer>
   )
 }

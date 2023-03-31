@@ -1,6 +1,6 @@
-enum Routes {
-  ROOT = '/',
-  COUNTRY = 'country'
+enum routes {
+  HOME = '/',
+  COUNTRY = '/country'
 }
 
-export default Routes
+export default routes

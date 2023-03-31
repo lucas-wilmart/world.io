@@ -8,9 +8,7 @@ import Router from './Router'
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Layout>
-        <Router />
-      </Layout>
+      <Router />
     </ThemeProvider>
   )
 }
