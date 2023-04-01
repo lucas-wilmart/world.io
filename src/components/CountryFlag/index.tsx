@@ -2,16 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface CountryFlagProps {
-  cca2: string
-  independent: boolean
+  flagSrc: string
 }
 
-const CountryFlag: React.FC<CountryFlagProps> = ({ cca2, independent }) => {
-  const endPoint = 'flags'
-
+const CountryFlag: React.FC<CountryFlagProps> = ({ flagSrc }) => {
   return (
     <FlagContainer>
-      <img src={`https://flagcdn.com/160x120/${cca2.toLowerCase()}.png`} />
+      <img src={flagSrc} />
     </FlagContainer>
   )
 }
@@ -20,4 +17,12 @@ export default CountryFlag
 
 const FlagContainer = styled.div`
   padding: 15px;
+  object-fit: contain;
+  overflow: hidden;
+
+  & img {
+    border-radius: 10px;
+    width: 120px;
+    height: 90px;
+  }
 `

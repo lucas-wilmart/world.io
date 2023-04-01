@@ -1,15 +1,5 @@
 import styled from 'styled-components'
 
-export const CountryCardContainer = styled.div`
-  padding: 10px;
-  background-color: ${({ theme }) => theme.colors.grey};
-  border-radius: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-`
-
 export const CountryInfosLeft = styled.div`
   display: flex;
   align-items: center;
@@ -26,9 +16,52 @@ export const CountryName = styled.div`
   margin-bottom: 10px;
 `
 
-export const CountrySecondaryInfos = styled.div`
+export const CountryDescription = styled.div`
   font-size: 15px;
-  color: ${({ theme }) => theme.colors.navy};
-  margin-right: 30px;
-  text-align: right;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`
+
+export const CountryDescriptionRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  & :first-child {
+    color: ${({ theme }) => theme.colors.navy};
+  }
+
+  & :last-child {
+    color: ${({ theme }) => theme.colors.black};
+    text-align: right;
+  }
+`
+
+interface CountryCardContainerProps {
+  clickable: boolean
+}
+
+export const CountryCardContainer = styled.div<CountryCardContainerProps>`
+  padding: 10px;
+  background-color: ${({ theme }) => theme.colors.light};
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: solid 1px ${({ theme }) => theme.colors.grey};
+
+  ${(p) =>
+    p.clickable &&
+    `
+    cursor: pointer;
+    &:hover {
+      opacity: 0.85;
+      ${CountryName} {
+        text-decoration: underline;
+        color: ${p.theme.colors.navy};
+      }
+    }
+  `}
 `

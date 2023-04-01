@@ -21,13 +21,13 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: ${({ theme }) => theme.colors.grey};
+  background-color: ${({ theme }) => theme.colors.light};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-bottom: solid 1px ${({ theme }) => theme.colors.lightBlue};
+  border-bottom: solid 1px ${({ theme }) => theme.colors.grey};
 `
 
 const HeaderContent = styled.div`

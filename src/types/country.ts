@@ -25,4 +25,8 @@ export interface Country {
     [key: string]: string
   }
   independent: boolean
+  flags: {
+    png: string
+    svg: string
+  }
 }

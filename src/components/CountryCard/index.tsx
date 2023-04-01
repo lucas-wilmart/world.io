@@ -1,17 +1,34 @@
 import React from 'react'
 import { Country } from '../../types/country'
 import CountryFlag from '../CountryFlag'
-import { CountryCardContainer, CountryInfosLeft, CountryMainInfos, CountryName, CountrySecondaryInfos } from './styles'
+import {
+  CountryCardContainer,
+  CountryDescription,
+  CountryDescriptionRow,
+  CountryInfosLeft,
+  CountryMainInfos,
+  CountryName
+} from './styles'
 
 interface CountryCardProps {
   country: Country
+  onClick?: () => void
 }
 
-const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
+const CountryCard: React.FC<CountryCardProps> = ({ country, onClick }) => {
+  const renderCountryDescriptionRows = (rows: { header: string; value: string }[]) => {
+    return rows.map((row) => (
+      <CountryDescriptionRow key={row.header}>
+        <span>{row.header}</span>
+        <span>{row.value}</span>
+      </CountryDescriptionRow>
+    ))
+  }
+
   return (
-    <CountryCardContainer key={country.cca2} className="box-shadow">
+    <CountryCardContainer key={country.cca2} className="box-shadow" onClick={onClick} clickable={onClick !== undefined}>
       <CountryInfosLeft>
-        <CountryFlag cca2={country.cca2} independent={country.independent} />
+        <CountryFlag flagSrc={country.flags.png} />
         <CountryMainInfos>
           <CountryName>{country.name.common}</CountryName>
           <div>{country.region}</div>
@@ -19,17 +36,30 @@ const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
         </CountryMainInfos>
       </CountryInfosLeft>
 
-      <CountrySecondaryInfos>
-        <div>Code: {country.cca2}</div>
-        <div>
-          Capitale{country.capital.length > 1 && 's'}: {country.capital.join(', ')}
-        </div>
-        <div>languages: {Object.values(country.languages).join(', ')}</div>
-        <div>
-          Tld{country.capital.length > 1 && 's'}: {country.tld.join(', ')}
-        </div>
-        <div>Indépendant: {country.independent ? 'Oui' : 'Non'}</div>
-      </CountrySecondaryInfos>
+      <CountryDescription>
+        {renderCountryDescriptionRows([
+          {
+            header: 'Code',
+            value: country.cca2
+          },
+          {
+            header: 'Capital',
+            value: country.capital.join(', ')
+          },
+          {
+            header: 'Languages',
+            value: Object.values(country.languages).join(', ')
+          },
+          {
+            header: 'TLD',
+            value: country.tld.join(', ')
+          },
+          {
+            header: 'Independent',
+            value: country.independent ? 'yes' : 'no'
+          }
+        ])}
+      </CountryDescription>
     </CountryCardContainer>
   )
 }
