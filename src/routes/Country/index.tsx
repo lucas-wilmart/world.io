@@ -29,6 +29,7 @@ const Country: React.FC = () => {
       {country && (
         <div>
           <CountryCard country={country} />
+          <div />
         </div>
       )}
       {error && <ServiceError />}

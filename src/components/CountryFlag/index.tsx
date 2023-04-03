@@ -21,6 +21,7 @@ const FlagContainer = styled.div`
   overflow: hidden;
 
   & img {
+    border: solid 1px ${(p) => p.theme.colors.black};
     border-radius: 10px;
     width: 120px;
     height: 90px;

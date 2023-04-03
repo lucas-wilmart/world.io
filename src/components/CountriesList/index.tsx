@@ -5,6 +5,7 @@ import useCountriesService from '../../hooks/useCountriesService'
 import routes from '../../routes'
 import CountryCard from '../CountryCard'
 import Loader from '../Loader'
+import ServiceError from '../ServiceError'
 
 interface CountriesListProps {}
 
@@ -28,7 +29,7 @@ const CountriesList: React.FC<CountriesListProps> = ({}) => {
 
           return <CountryCard country={country} key={country.cca2} onClick={onClick} />
         })}
-      {error && <div>Un problème est survenu</div>}
+      {error && <ServiceError />}
     </CountryListContainer>
   )
 }
