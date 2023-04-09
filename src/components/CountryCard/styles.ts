@@ -1,3 +1,4 @@
+import { Card } from './../../styles/elements'
 import styled from 'styled-components'
 
 export const CountryInfosLeft = styled.div`
@@ -43,14 +44,10 @@ interface CountryCardContainerProps {
   clickable: boolean
 }
 
-export const CountryCardContainer = styled.div<CountryCardContainerProps>`
-  padding: 10px;
-  background-color: ${({ theme }) => theme.colors.light};
-  border-radius: 15px;
+export const CountryCardContainer = styled(Card)<CountryCardContainerProps>`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: solid 1px ${({ theme }) => theme.colors.grey};
 
   ${(p) =>
     p.clickable &&
