@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import routes from '../../routes'
 import useWikipediaService from '../../hooks/useWikipediaService'
 import WikipediaExtract from '../../components/WikipediaExtract'
+import NavigationLink from '../../components/NavigationLink'
 
 export interface CountryRouteParams {
   countryCode: string
@@ -18,7 +19,7 @@ const Country: React.FC = () => {
 
   const { loadCountryByCode, loading, country, error } = useCountriesService()
 
-  const { loadPageByTitle, loading: wikipediaLoading, error: wikipediaError, extract } = useWikipediaService()
+  const { loadPageByTitle, extract } = useWikipediaService()
 
   useEffect(() => {
     if (countryCode) {
@@ -34,7 +35,7 @@ const Country: React.FC = () => {
 
   return (
     <div>
-      <StyledLink to={routes.HOME}>Liste des pays</StyledLink>
+      <NavigationLink to={routes.HOME} label="Back to Homepage" />
       {loading && <Loader />}
       {country && (
         <div>
@@ -50,10 +51,6 @@ const Country: React.FC = () => {
 
 export default Country
 
-const StyledLink = styled(Link)`
-  display: block;
-  margin: 30px 10px;
-`
 const StyledWikipediaExtract = styled(WikipediaExtract)`
   padding: 40px;
   margin-top: 20px;

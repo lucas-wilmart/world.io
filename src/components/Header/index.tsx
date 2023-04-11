@@ -39,6 +39,8 @@ const HeaderContent = styled.div`
   align-items: center;
   font-size: 25px;
   padding: 0 20px;
+
+  font-family: 'Trebuchet MS', sans-serif;
 `
 
 const Logo = styled.img`

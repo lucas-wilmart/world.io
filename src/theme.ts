@@ -14,6 +14,12 @@ const Theme: DefaultTheme = {
   layout: {
     headerHeight: 80,
     contentMaxWidth: 1280
+  },
+  media: {
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280
   }
 }
 

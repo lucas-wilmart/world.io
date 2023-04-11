@@ -16,5 +16,11 @@ declare module 'styled-components' {
       headerHeight: number
       contentMaxWidth: number
     }
+    media: {
+      sm: number
+      md: number
+      lg: number
+      xl: number
+    }
   }
 }
