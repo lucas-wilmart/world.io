@@ -1,18 +1,40 @@
 import React, { useState } from 'react'
-import { QuizQuestion } from '../../types/quiz'
 import { PageTitle } from '../../styles/typography'
-import { QuizAnswer, QuizAnswersContainer, QuizContainer, QuizQuestionTile, ScoreRow } from './styles'
+import { QuizQuestion } from '../../types/quiz'
+import {
+  GameEndText,
+  QuizAnswer,
+  QuizAnswersContainer,
+  QuizButton,
+  QuizButtonContainer,
+  QuizContainer,
+  QuizQuestionTile,
+  ScoreRow
+} from './styles'
 
 interface QuizProps {
   title: string
   questions: QuizQuestion[]
+  onPlayAgain: () => void
 }
 
 const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
   const [questionIndex, setQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
+  const [currentAnswer, setCurrentAnswer] = useState<undefined | string>()
 
   const currentQuestion = questions.length > questionIndex ? questions[questionIndex] : undefined
+
+  const onNextQuestion = () => {
+    setCurrentAnswer(undefined)
+    setQuestionIndex((questionIndex) => questionIndex + 1)
+  }
+
+  const onPlayAgain = () => {
+    setQuestionIndex(0)
+    setScore(0)
+    setCurrentAnswer(undefined)
+  }
 
   return (
     <div>
@@ -24,16 +46,26 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
 
           <QuizAnswersContainer>
             {currentQuestion.answers.map((answer, index) => {
+              const isCorrect = answer === currentQuestion.correctAnswer
+              const isWrong = !isCorrect && currentAnswer === answer
+
               const handleClick = () => {
-                if (answer === currentQuestion.correctAnswer) {
+                if (isCorrect) {
                   setScore((score) => score + 1)
                 }
 
-                setQuestionIndex((questionIndex) => questionIndex + 1)
+                setCurrentAnswer(answer)
               }
 
+              const quizAnswerProps = currentAnswer
+                ? {
+                    correct: isCorrect,
+                    wrong: isWrong
+                  }
+                : undefined
+
               return (
-                <QuizAnswer onClick={handleClick} key={answer}>
+                <QuizAnswer onClick={handleClick} {...quizAnswerProps} key={answer}>
                   {answer}
                 </QuizAnswer>
               )
@@ -42,10 +74,23 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
         </QuizContainer>
       )}
 
-      {!currentQuestion && <div>Terminé !</div>}
+      {!currentQuestion && <GameEndText>Finished. Your score is:</GameEndText>}
       <ScoreRow>
-        Score: {score} / {questions.length}
+        {score} / {questions.length}
       </ScoreRow>
+
+      <QuizButtonContainer>
+        {currentAnswer && currentQuestion && (
+          <QuizButton className="box-shadow" onClick={onNextQuestion}>
+            Question suivante
+          </QuizButton>
+        )}
+        {!currentQuestion && (
+          <QuizButton className="box-shadow" onClick={onPlayAgain}>
+            Rejouer
+          </QuizButton>
+        )}
+      </QuizButtonContainer>
     </div>
   )
 }

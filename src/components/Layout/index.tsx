@@ -18,7 +18,10 @@ export default Layout
 
 const LayoutContainer = styled.div`
   box-sizing: border-box;
-  padding-top: ${({ theme }) => theme.layout.headerHeight}px;
+  padding-top: ${({ theme }) => theme.layout.headerHeight.sm}px;
+  @media (min-width: ${(p) => p.theme.media.md}px) {
+    padding-top: ${({ theme }) => theme.layout.headerHeight.md}px;
+  }
   min-height: 100%;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.lightBlue};

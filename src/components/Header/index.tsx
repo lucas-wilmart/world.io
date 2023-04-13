@@ -1,12 +1,26 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import EarthSvg from '../../assets/earth-icon.svg'
+import routes from '../../routes'
 
 const Header: React.FC = () => {
+  const location = useLocation()
+
   return (
     <HeaderContainer className="box-shadow">
       <HeaderContent>
-        <Logo src={EarthSvg} /> world.io
+        <LogoContainer>
+          <Logo src={EarthSvg} /> world.io
+        </LogoContainer>
+        <Nav>
+          <NavLink to={routes.HOME} $active={location.pathname === routes.HOME}>
+            Liste des pays
+          </NavLink>
+          <NavLink to={routes.QUIZS} $active={location.pathname === routes.QUIZS}>
+            Quizs
+          </NavLink>
+        </Nav>
       </HeaderContent>
     </HeaderContainer>
   )
@@ -15,35 +29,64 @@ const Header: React.FC = () => {
 export default Header
 
 const HeaderContainer = styled.header`
-  height: ${({ theme }) => theme.layout.headerHeight}px;
+  height: ${({ theme }) => theme.layout.headerHeight.sm}px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.light};
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-bottom: solid 1px ${({ theme }) => theme.colors.grey};
+
+  @media (min-width: ${(p) => p.theme.media.md}px) {
+    height: ${({ theme }) => theme.layout.headerHeight.md}px;
+  }
 `
 
 const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
   width: 100%;
   height: 100%;
   max-width: ${({ theme }) => theme.layout.contentMaxWidth}px;
   color: ${({ theme }) => theme.colors.blue};
-  display: flex;
   align-items: center;
   font-size: 25px;
   padding: 0 20px;
 
   font-family: 'Trebuchet MS', sans-serif;
+
+  @media (min-width: ${(p) => p.theme.media.md}px) {
+    gap: 0;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+`
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `
 
 const Logo = styled.img`
   width: 50px;
-  margin-right: 20px;
+`
+
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding-right: 15px;
+`
+
+const NavLink = styled(Link)<{ $active: boolean }>`
+  text-decoration: none;
+  color: ${(p) => (p.$active ? p.theme.colors.darkGrey : p.theme.colors.blue)};
+  font-size: 18px;
 `

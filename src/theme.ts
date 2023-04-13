@@ -12,7 +12,10 @@ const Theme: DefaultTheme = {
     white: '#ffffff'
   },
   layout: {
-    headerHeight: 80,
+    headerHeight: {
+      sm: 130,
+      md: 80
+    },
     contentMaxWidth: 1280
   },
   media: {

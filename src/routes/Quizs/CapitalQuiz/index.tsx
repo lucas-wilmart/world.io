@@ -14,23 +14,21 @@ const CapitalQuiz: React.FC = () => {
     loadAll()
   }, [])
 
-  useEffect(() => {
-    console.log('flag X', countries)
-  }, [countries])
-
   const questions = useMemo<QuizQuestion[] | undefined>(() => {
-    console.log('trigger useMemo')
     if (countries) {
       return shuffle<Country>(countries)
         .slice(0, 10)
         .map((item) => {
-          console.log('flag item')
           let answers: string[] = []
           const randomCountries = shuffle<Country>(countries)
 
           let i = 0
           while (answers.length < 3) {
             const randomCountry = randomCountries[i]
+
+            if (!randomCountry.cca2 || !item.cca2 || !randomCountry.capital[0]) {
+              continue
+            }
 
             if (randomCountry.cca2 !== item.cca2 && item.capital.length > 0) {
               answers.push(randomCountry.capital[0])
@@ -57,7 +55,7 @@ const CapitalQuiz: React.FC = () => {
     <div>
       {loading && <Loader />}
       {error && <ServiceError />}
-      {questions && <Quiz title="Capital cities" questions={questions} />}
+      {questions && <Quiz title="Capital cities" questions={questions} onPlayAgain={loadAll} />}
     </div>
   )
 }

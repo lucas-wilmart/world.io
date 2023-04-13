@@ -13,7 +13,10 @@ declare module 'styled-components' {
       white: string
     }
     layout: {
-      headerHeight: number
+      headerHeight: {
+        sm: number
+        md: number
+      }
       contentMaxWidth: number
     }
     media: {
