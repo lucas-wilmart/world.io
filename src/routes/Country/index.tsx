@@ -17,13 +17,13 @@ export interface CountryRouteParams {
 const Country: React.FC = () => {
   const { countryCode } = useParams<'countryCode'>()
 
-  const { loadCountryByCode, loading, country, error } = useCountriesService()
+  const { getByCode, loading, country, error } = useCountriesService()
 
   const { loadPageByTitle, extract } = useWikipediaService()
 
   useEffect(() => {
     if (countryCode) {
-      loadCountryByCode(countryCode)
+      getByCode(countryCode)
     }
   }, [countryCode])
 

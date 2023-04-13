@@ -1,35 +1,25 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
 import styled from 'styled-components'
-import useCountriesService from '../../hooks/useCountriesService'
-import routes from '../../routes'
+import { Country } from '../../types/country'
 import CountryCard from '../CountryCard'
-import Loader from '../Loader'
-import ServiceError from '../ServiceError'
 
-interface CountriesListProps {}
+interface CountriesListProps {
+  countries: Country[]
+  onCountryClick?: (country: Country) => void
+}
 
-const CountriesList: React.FC<CountriesListProps> = ({}) => {
-  const navigate = useNavigate()
-  const { countries, loading, error, loadAllCountries } = useCountriesService()
-
-  useEffect(() => {
-    loadAllCountries()
-  }, [])
-
+const CountriesList: React.FC<CountriesListProps> = ({ countries, onCountryClick }) => {
   return (
     <CountryListContainer>
-      {loading && <Loader />}
-      {!loading &&
-        countries &&
-        countries.map((country) => {
-          const onClick = () => {
-            navigate(`${routes.COUNTRY}/${country.cca2}`)
+      {countries.map((country) => {
+        const onClick = () => {
+          if (onCountryClick) {
+            onCountryClick(country)
           }
+        }
 
-          return <CountryCard country={country} key={country.cca2} onClick={onClick} />
-        })}
-      {error && <ServiceError />}
+        return <CountryCard country={country} key={country.cca2} onClick={onClick} />
+      })}
     </CountryListContainer>
   )
 }

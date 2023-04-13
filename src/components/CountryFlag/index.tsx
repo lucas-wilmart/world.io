@@ -17,8 +17,8 @@ export default CountryFlag
 
 const FlagContainer = styled.div`
   padding: 15px;
-  object-fit: contain;
   overflow: hidden;
+  flex-shrink: 0;
 
   & img {
     border: solid 1px ${(p) => p.theme.colors.black};

@@ -8,10 +8,10 @@ import { QuizQuestion } from '../../../types/quiz'
 import { shuffle } from '../../../utils/array'
 
 const CapitalQuiz: React.FC = () => {
-  const { countries, loadAllCountries, loading, error } = useCountriesService()
+  const { countries, loadAll, loading, error } = useCountriesService()
 
   useEffect(() => {
-    loadAllCountries()
+    loadAll()
   }, [])
 
   useEffect(() => {

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
-import { fetchAllCountries, fetchCountryByCode } from '../services/restcountries'
+import { fetchAllCountries, fetchCountryByCode, searchCountriesByName } from '../services/restcountries'
 import { Country } from '../types/country'
 
 const useCountriesService = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [country, setCountry] = useState<Country>()
   const [countries, setCountries] = useState<Country[]>()
-  const [error, setError] = useState<boolean>(false)
+  const [error, setError] = useState<boolean | string>(false)
 
-  const loadAllCountries = async () => {
+  const loadAll = async () => {
     setError(false)
     setLoading(true)
 
@@ -23,7 +23,7 @@ const useCountriesService = () => {
     setLoading(false)
   }
 
-  const loadCountryByCode = async (code: string) => {
+  const getByCode = async (code: string) => {
     setError(false)
     setLoading(true)
 
@@ -38,9 +38,27 @@ const useCountriesService = () => {
     setLoading(false)
   }
 
+  const searchByName = async (search: string) => {
+    setError(false)
+    setLoading(true)
+
+    try {
+      const result = await searchCountriesByName(search)
+      setCountries(result)
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message)
+      } else {
+        setError(true)
+      }
+    }
+    setLoading(false)
+  }
+
   return {
-    loadAllCountries,
-    loadCountryByCode,
+    loadAll,
+    getByCode,
+    searchByName,
     countries,
     country,
     loading,

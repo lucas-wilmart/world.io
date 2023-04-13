@@ -27,12 +27,11 @@ const StyledLink = styled(Link)`
   font-weight: 400;
   color: ${(p) => p.theme.colors.blue};
   padding: 20px 0;
+  padding-left: 15px;
+  margin-bottom: 10px;
 
   &:hover {
+    opacity: 0.8;
     text-decoration: underline;
-
-    & svg {
-      opacity: 0.8;
-    }
   }
 `
