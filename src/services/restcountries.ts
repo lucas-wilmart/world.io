@@ -12,3 +12,9 @@ export const fetchCountryByCode = async (code: string): Promise<Country> =>
 
 export const searchCountriesByName = (search: string): Promise<Country[]> =>
   service(`${baseUrl}/name/${search}?fields=${queryFields}`)
+
+export const fetchCountries = (search?: string): Promise<Country[]> => {
+  const url = search ? `${baseUrl}/name/${search}?fields=${queryFields}` : `${baseUrl}/all?fields=${queryFields}`
+
+  return service(url)
+}
