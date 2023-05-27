@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Loader: React.FC = () => {
   return (
     <LoaderContainer>
-      <img src="/loading.gif" alt="loading..." />
+      <img src="./loading.gif" alt="loading..." />
     </LoaderContainer>
   )
 }
