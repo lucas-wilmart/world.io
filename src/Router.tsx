@@ -10,7 +10,7 @@ import CapitalQuiz from './routes/Quizs/CapitalQuiz'
 
 const Router: React.FC = () => {
   return (
-    <HashRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <Routes>
         <Route path={routes.HOME} element={<Layout />}>
           <Route index element={<Home />} />
