@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import routes, { quizRoutes } from './routes'
 import Country from './routes/Country'
@@ -10,7 +10,7 @@ import CapitalQuiz from './routes/Quizs/CapitalQuiz'
 
 const Router: React.FC = () => {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path={routes.HOME} element={<Layout />}>
           <Route index element={<Home />} />
@@ -22,7 +22,7 @@ const Router: React.FC = () => {
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

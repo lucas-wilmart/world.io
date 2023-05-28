@@ -4,14 +4,14 @@ import service from '../utils/service'
 const endPoint =
   'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&format=json&exintro=1&origin=*&exsentences=10'
 
-export const getPageExtract = async (title: string): Promise<WikipediaExtractResultItem> => {
+export const fetchWikiExtract = async (title: string): Promise<string> => {
   const result: WikipediaTextExtractResponse = await service(`${endPoint}&titles=${title}`)
 
-  const firstResult = result.query.pages[Object.keys(result.query.pages)[0]]
+  const firstResult: WikipediaExtractResultItem = result.query.pages[Object.keys(result.query.pages)[0]]
 
-  if ('missing' in firstResult) {
+  if (!firstResult.extract) {
     throw new Error('Page introuvable')
   } else {
-    return firstResult
+    return firstResult.extract
   }
 }

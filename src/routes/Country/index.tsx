@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import useCountriesService from '../../hooks/useCountriesService'
+import { useParams } from 'react-router-dom'
+
+import routes from '../../routes'
+
+import useAsyncService from '../../hooks/useAsyncService'
+
 import Loader from '../../components/Loader'
 import CountryCard from '../../components/CountryCard'
 import ServiceError from '../../components/ServiceError'
 import styled from 'styled-components'
-import routes from '../../routes'
-import useWikipediaService from '../../hooks/useWikipediaService'
 import WikipediaExtract from '../../components/WikipediaExtract'
 import NavigationLink from '../../components/NavigationLink'
+
+import { fetchCountryByCode } from '../../services/restcountries'
+import { fetchWikiExtract } from '../../services/wikipedia'
 
 export interface CountryRouteParams {
   countryCode: string
@@ -17,34 +22,37 @@ export interface CountryRouteParams {
 const Country: React.FC = () => {
   const { countryCode } = useParams<'countryCode'>()
 
-  const { getByCode, loading, country, error } = useCountriesService()
+  const { request: getCountryByCode, error, pending, data } = useAsyncService(fetchCountryByCode)
+  console.log({ error })
 
-  const { loadPageByTitle, extract } = useWikipediaService()
+  const { request: getWikiExtract, data: wikiExtract, pending: wikiExtractPending } = useAsyncService(fetchWikiExtract)
 
   useEffect(() => {
     if (countryCode) {
-      getByCode(countryCode)
+      getCountryByCode(countryCode)
     }
   }, [countryCode])
 
   useEffect(() => {
-    if (country) {
-      loadPageByTitle(country.name.common)
+    if (data) {
+      getWikiExtract(data.name.common)
     }
-  }, [country])
+  }, [data])
 
   return (
     <div>
-      <NavigationLink to={routes.HOME} label="Back to Homepage" />
-      {loading && <Loader />}
-      {country && (
-        <div>
-          <CountryCard country={country} />
-          <div />
-        </div>
-      )}
-      {error && <ServiceError />}
-      {extract && <StyledWikipediaExtract content={extract} />}
+      <>
+        <NavigationLink to={routes.HOME} label="Back to Homepage" />
+        {pending && <Loader />}
+        {data && (
+          <div>
+            <CountryCard country={data} />
+            <div />
+          </div>
+        )}
+        {error && <ServiceError />}
+        {wikiExtract && <StyledWikipediaExtract content={wikiExtract} loading={wikiExtractPending} />}
+      </>
     </div>
   )
 }
