@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card } from '../../styles/elements'
+
+import { Card } from '@/styles/elements'
 import Loader from '../Loader'
 
 interface WikipediaExtractProps {

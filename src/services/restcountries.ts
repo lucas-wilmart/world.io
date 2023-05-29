@@ -1,5 +1,6 @@
-import { Country } from '../types/country'
-import service from '../utils/service'
+import { Country } from '@/types/country'
+
+import service from '@/utils/service'
 
 const version = '3.1'
 const baseUrl = `https://restcountries.com/v${version}`

@@ -1,11 +1,15 @@
 import React, { useEffect, useMemo } from 'react'
-import Loader from '../../../components/Loader'
-import Quiz from '../../../components/Quiz'
-import ServiceError from '../../../components/ServiceError'
-import useCountriesService from '../../../hooks/useCountriesService'
-import { Country } from '../../../types/country'
-import { QuizQuestion } from '../../../types/quiz'
-import { shuffle } from '../../../utils/array'
+
+import useCountriesService from '@/hooks/useCountriesService'
+
+import { Country } from '@/types/country'
+import { QuizQuestion } from '@/types/quiz'
+
+import Loader from '@/components/Loader'
+import Quiz from '@/components/Quiz'
+import ServiceError from '@/components/ServiceError'
+
+import { shuffle } from '@/utils/array'
 
 const CapitalQuiz: React.FC = () => {
   const { countries, loadAll, loading, error } = useCountriesService()

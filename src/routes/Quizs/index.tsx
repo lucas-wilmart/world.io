@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { quizRoutes } from '../../routes'
-import { PageTitle } from '../../styles/typography'
+
+import { PageTitle } from '@/styles/typography'
+
+import { quizRoutes } from '@/routes'
 
 const Quizs: React.FC = () => {
   return (
     <div>
       <PageTitle>Quizs</PageTitle>
 
-      <QuizLink className="box-shadow" to={`./${quizRoutes.CAPITAL}`}>
-        Countries Capital Cities
+      <QuizLink className="box-shadow" to={`.${quizRoutes.CAPITAL}`}>
+        <span>Guess countries capital cities</span>
+        <span>10 questions</span>
       </QuizLink>
     </div>
   )
@@ -19,7 +22,9 @@ const Quizs: React.FC = () => {
 export default Quizs
 
 const QuizLink = styled(Link)`
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
   font-size: 23px;
   text-decoration: none;

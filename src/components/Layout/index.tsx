@@ -1,7 +1,8 @@
 import React from 'react'
-import Header from '../Header'
 import styled from 'styled-components'
 import { Outlet } from 'react-router-dom'
+
+import Header from '../Header'
 
 const Layout: React.FC = () => {
   return (

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import EarthSvg from '../../assets/earth-icon.svg'
-import routes from '../../routes'
+
+import EarthSvg from '@/../earth-icon.svg'
+
+import routes from '@routes'
 
 const Header: React.FC = () => {
   const location = useLocation()
@@ -15,7 +17,7 @@ const Header: React.FC = () => {
         </LogoContainer>
         <Nav>
           <NavLink to={routes.HOME} $active={location.pathname === routes.HOME}>
-            Liste des pays
+            Countries List
           </NavLink>
           <NavLink to={routes.QUIZS} $active={location.pathname === routes.QUIZS}>
             Quizs

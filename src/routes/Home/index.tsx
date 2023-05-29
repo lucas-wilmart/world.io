@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import CountriesList from '../../components/CountriesList'
-import styled from 'styled-components'
-import SearchBar from '../../components/SearchBar'
 import { useNavigate } from 'react-router-dom'
-import useAsyncService from '../../hooks/useAsyncService'
-import Loader from '../../components/Loader'
-import ServiceError from '../../components/ServiceError'
-import routes from '../../routes'
-import { Country } from '../../types/country'
-import { fetchCountries } from '../../services/restcountries'
+import styled from 'styled-components'
+
+import { Country } from '@/types/country'
+
+import useAsyncService from '@/hooks/useAsyncService'
+
+import CountriesList from '@/components/CountriesList'
+import SearchBar from '@/components/SearchBar'
+import Loader from '@/components/Loader'
+import ServiceError from '@/components/ServiceError'
+
+import routes from '@/routes'
+
+import { fetchCountries } from '@/services/restcountries'
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState<string>('')

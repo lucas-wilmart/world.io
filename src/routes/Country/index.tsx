@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
-import routes from '../../routes'
-
-import useAsyncService from '../../hooks/useAsyncService'
-
-import Loader from '../../components/Loader'
-import CountryCard from '../../components/CountryCard'
-import ServiceError from '../../components/ServiceError'
 import styled from 'styled-components'
-import WikipediaExtract from '../../components/WikipediaExtract'
-import NavigationLink from '../../components/NavigationLink'
 
-import { fetchCountryByCode } from '../../services/restcountries'
-import { fetchWikiExtract } from '../../services/wikipedia'
+import Loader from '@/components/Loader'
+import CountryCard from '@/components/CountryCard'
+import ServiceError from '@/components/ServiceError'
+import WikipediaExtract from '@/components/WikipediaExtract'
+import NavigationLink from '@/components/NavigationLink'
+
+import useAsyncService from '@/hooks/useAsyncService'
+
+import { fetchCountryByCode } from '@/services/restcountries'
+import { fetchWikiExtract } from '@/services/wikipedia'
+
+import routes from '@/routes'
 
 export interface CountryRouteParams {
   countryCode: string

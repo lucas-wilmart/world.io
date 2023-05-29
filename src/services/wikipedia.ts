@@ -1,5 +1,5 @@
-import { WikipediaExtractResultItem, WikipediaTextExtractResponse } from './../types/wikipedia'
-import service from '../utils/service'
+import { WikipediaExtractResultItem, WikipediaTextExtractResponse } from '@/types/wikipedia'
+import service from '@/utils/service'
 
 const endPoint =
   'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&format=json&exintro=1&origin=*&exsentences=10'

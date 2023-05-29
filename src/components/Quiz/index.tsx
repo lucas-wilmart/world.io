@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { PageTitle } from '../../styles/typography'
-import { QuizQuestion } from '../../types/quiz'
+
+import { QuizQuestion } from '@/types/quiz'
+
+import { PageTitle } from '@/styles/typography'
 import {
   GameEndText,
   QuizAnswer,

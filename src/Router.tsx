@@ -1,6 +1,8 @@
 import React from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
+
 import Layout from './components/Layout'
+
 import routes, { quizRoutes } from './routes'
 import Country from './routes/Country'
 import ErrorPage from './routes/NotFound'
