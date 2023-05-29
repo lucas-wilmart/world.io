@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-import EarthSvg from '@/../earth-icon.svg'
+import EarthSvg from '@/assets/images/earth-icon.svg'
 
 import routes from '@routes'
 
