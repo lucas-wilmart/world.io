@@ -16,11 +16,14 @@ const Router: React.FC = () => {
       <Routes>
         <Route path={routes.HOME} element={<Layout />}>
           <Route index element={<Home />} />
+
           <Route path={`${routes.COUNTRY}/:countryCode`} element={<Country />} />
+
           <Route path={`${routes.QUIZS}`}>
             <Route index element={<Quizs />} />
             <Route path={`${routes.QUIZS}/${quizRoutes.CAPITAL}`} element={<CapitalQuiz />} />
           </Route>
+
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
