@@ -20,7 +20,7 @@ interface QuizProps {
   onPlayAgain: () => void
 }
 
-const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
+const Quiz: React.FC<QuizProps> = ({ title, questions, onPlayAgain }) => {
   const [questionIndex, setQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [currentAnswer, setCurrentAnswer] = useState<undefined | string>()
@@ -32,10 +32,8 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
     setQuestionIndex((questionIndex) => questionIndex + 1)
   }
 
-  const onPlayAgain = () => {
-    setQuestionIndex(0)
-    setScore(0)
-    setCurrentAnswer(undefined)
+  const handlePlayAgain = () => {
+    onPlayAgain()
   }
 
   return (
@@ -88,7 +86,7 @@ const Quiz: React.FC<QuizProps> = ({ title, questions }) => {
           </QuizButton>
         )}
         {!currentQuestion && (
-          <QuizButton className="box-shadow" onClick={onPlayAgain}>
+          <QuizButton className="box-shadow" onClick={handlePlayAgain}>
             Rejouer
           </QuizButton>
         )}

@@ -14,10 +14,11 @@ import {
 
 interface CountryCardProps {
   country: Country
+  showDescription?: boolean
   onClick?: () => void
 }
 
-const CountryCard: React.FC<CountryCardProps> = ({ country, onClick }) => {
+const CountryCard: React.FC<CountryCardProps> = ({ country, onClick, showDescription = true }) => {
   const renderCountryDescriptionRows = (rows: { header: string; value: string }[]) => {
     return rows.map((row) => (
       <CountryDescriptionRow key={row.header}>
@@ -38,30 +39,32 @@ const CountryCard: React.FC<CountryCardProps> = ({ country, onClick }) => {
         </CountryMainInfos>
       </CountryInfosLeft>
 
-      <CountryDescription>
-        {renderCountryDescriptionRows([
-          {
-            header: 'Code',
-            value: country.cca2
-          },
-          {
-            header: 'Capital',
-            value: country.capital.join(', ')
-          },
-          {
-            header: 'Languages',
-            value: Object.values(country.languages).join(', ')
-          },
-          {
-            header: 'TLD',
-            value: country.tld.join(', ')
-          },
-          {
-            header: 'Independent',
-            value: country.independent ? 'yes' : 'no'
-          }
-        ])}
-      </CountryDescription>
+      {showDescription && (
+        <CountryDescription>
+          {renderCountryDescriptionRows([
+            {
+              header: 'Code',
+              value: country.cca2
+            },
+            {
+              header: 'Capital',
+              value: country.capital.join(', ')
+            },
+            {
+              header: 'Languages',
+              value: Object.values(country.languages).join(', ')
+            },
+            {
+              header: 'TLD',
+              value: country.tld.join(', ')
+            },
+            {
+              header: 'Independent',
+              value: country.independent ? 'yes' : 'no'
+            }
+          ])}
+        </CountryDescription>
+      )}
     </CountryCardContainer>
   )
 }

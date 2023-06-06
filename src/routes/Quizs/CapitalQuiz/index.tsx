@@ -12,7 +12,7 @@ import { fetchIndependentCountries } from '@/services/restcountries'
 import useAsyncService from '@/hooks/useAsyncService'
 
 const CapitalQuiz: React.FC = () => {
-  const { pending, data: countries, error, request } = useAsyncService(fetchIndependentCountries)
+  const { pending, data: countries, error, request, clearData } = useAsyncService(fetchIndependentCountries)
 
   useEffect(() => {
     request()
@@ -59,12 +59,17 @@ const CapitalQuiz: React.FC = () => {
     }
   }, [countries])
 
+  const onPlayAgain = () => {
+    clearData()
+    request()
+  }
+
   return (
     <div>
       <>
         {pending && <Loader />}
         {error && <ServiceError />}
-        {questions && !pending && <Quiz title="Capital cities" questions={questions} onPlayAgain={request} />}
+        {questions && !pending && <Quiz title="Capital cities" questions={questions} onPlayAgain={onPlayAgain} />}
       </>
     </div>
   )

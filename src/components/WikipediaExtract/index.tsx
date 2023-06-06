@@ -21,4 +21,6 @@ const WikipediaExtract: React.FC<WikipediaExtractProps> = ({ className, content,
 
 export default WikipediaExtract
 
-const ExtractContainer = styled(Card)``
+const ExtractContainer = styled(Card)`
+  padding: 40px;
+`

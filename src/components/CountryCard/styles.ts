@@ -1,4 +1,4 @@
-import { Card } from './../../styles/elements'
+import { Card } from '@/styles/elements'
 import styled from 'styled-components'
 
 export const CountryInfosLeft = styled.div`

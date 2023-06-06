@@ -16,10 +16,13 @@ const Header: React.FC = () => {
           <Logo src={EarthSvg} /> world.io
         </LogoContainer>
         <Nav>
-          <NavLink to={routes.HOME} $active={location.pathname === routes.HOME}>
+          <NavLink
+            to={routes.HOME}
+            $active={location.pathname === routes.HOME || location.pathname.includes(routes.COUNTRY)}
+          >
             Countries List
           </NavLink>
-          <NavLink to={routes.QUIZS} $active={location.pathname === routes.QUIZS}>
+          <NavLink to={routes.QUIZS} $active={location.pathname.includes(routes.QUIZS)}>
             Quizs
           </NavLink>
         </Nav>
@@ -89,6 +92,11 @@ const Nav = styled.nav`
 
 const NavLink = styled(Link)<{ $active: boolean }>`
   text-decoration: none;
-  color: ${(p) => (p.$active ? p.theme.colors.darkGrey : p.theme.colors.blue)};
+  color: ${(p) => (p.$active ? p.theme.colors.blue : p.theme.colors.darkGrey)};
+  ${(p) => (p.$active ? 'text-decoration: underline;' : '')};
   font-size: 18px;
+
+  &:hover {
+    color: ${(p) => p.theme.colors.blue};
+  }
 `

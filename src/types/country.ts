@@ -29,4 +29,15 @@ export interface Country {
     png: string
     svg: string
   }
+  latlng: [number, number]
+  currencies: {
+    [code: string]: {
+      name: string
+      symbol: string
+    }
+  }
+  idd: {
+    root: string
+    suffixes: string[]
+  }
 }
