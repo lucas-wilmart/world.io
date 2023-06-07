@@ -11,7 +11,7 @@ const CountryInformationTile: React.FC<CountryInformationTileProps> = ({ title, 
   return (
     <Card className="box-shadow">
       <Title>{title}</Title>
-      <Value>{value}</Value>
+      <Value title={value}>{value}</Value>
     </Card>
   )
 }

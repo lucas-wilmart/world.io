@@ -1,5 +1,6 @@
 enum routes {
   HOME = '/',
+  SEARCH = '/search',
   COUNTRY = '/country',
   QUIZS = '/quizs'
 }

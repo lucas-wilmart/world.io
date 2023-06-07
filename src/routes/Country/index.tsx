@@ -55,7 +55,7 @@ const Country: React.FC = () => {
   return (
     <div>
       <>
-        <NavigationLink to={routes.HOME} label="Back to Homepage" />
+        <NavigationLink to={routes.SEARCH} label="Back to search" />
         {pending && <Loader />}
         {error && <ServiceError />}
         {data && (

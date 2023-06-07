@@ -1,12 +1,12 @@
 import React from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import Layout from './components/Layout'
 
 import routes, { quizRoutes } from './routes'
 import Country from './routes/Country'
 import ErrorPage from './routes/NotFound'
-import Home from './routes/Home'
+import Search from './routes/Search'
 import Quizs from './routes/Quizs'
 import CapitalQuiz from './routes/Quizs/CapitalQuiz'
 
@@ -15,7 +15,10 @@ const Router: React.FC = () => {
     <HashRouter>
       <Routes>
         <Route path={routes.HOME} element={<Layout />}>
-          <Route index element={<Home />} />
+          {/* Home redirects to Search */}
+          <Route index element={<Navigate to={routes.SEARCH} />} />
+
+          <Route path={routes.SEARCH} element={<Search />} />
 
           <Route path={`${routes.COUNTRY}/:countryCode`} element={<Country />} />
 

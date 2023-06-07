@@ -16,6 +16,7 @@ export default function useAsyncService<ServiceCallBack extends (...args: any[])
   const [error, setError] = useState<unknown | undefined>()
 
   const request = async (...args: Parameters<ServiceCallBack>) => {
+    setError(undefined)
     setPending(true)
     try {
       const result = await callback(...args)

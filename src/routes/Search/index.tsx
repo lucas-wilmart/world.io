@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Country } from '@/types/country'
@@ -15,9 +15,10 @@ import routes from '@/routes'
 
 import { fetchCountries } from '@/services/restcountries'
 
-const Home: React.FC = () => {
-  const [search, setSearch] = useState<string>('')
-
+const Search: React.FC = () => {
+  let [searchParams, setSearchParams] = useSearchParams()
+  const initialSearch = searchParams.get('q')
+  const [search, setSearch] = useState<string>(initialSearch ? initialSearch : '')
   const navigate = useNavigate()
 
   const { pending, data: countries, error, request } = useAsyncService(fetchCountries)
@@ -27,6 +28,16 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
+    // update query param in the URL
+    setSearchParams(
+      search
+        ? {
+            q: search
+          }
+        : undefined
+    )
+
+    // fetch results
     request(search)
   }, [search])
 
@@ -42,7 +53,7 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default Search
 
 const StyledSearchBar = styled(SearchBar)`
   margin: 20px 0;

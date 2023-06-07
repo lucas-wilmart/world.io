@@ -18,9 +18,9 @@ const Header: React.FC = () => {
         <Nav>
           <NavLink
             to={routes.HOME}
-            $active={location.pathname === routes.HOME || location.pathname.includes(routes.COUNTRY)}
+            $active={location.pathname === routes.SEARCH || location.pathname.includes(routes.COUNTRY)}
           >
-            Countries List
+            Search
           </NavLink>
           <NavLink to={routes.QUIZS} $active={location.pathname.includes(routes.QUIZS)}>
             Quizs
