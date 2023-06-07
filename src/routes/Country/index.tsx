@@ -71,8 +71,10 @@ const Country: React.FC = () => {
               <CountryInformationTile title="Calling Code" value={renderCallingCodeValue()} />
             </CountryInformations>
 
-            <MapCard name={data.name.common} lat={data.latlng[0]} long={data.latlng[1]} />
-            {wikiExtract && <WikipediaExtract content={wikiExtract} loading={wikiExtractPending} />}
+            <DescriptionGrid>
+              <MapCard name={data.name.common} lat={data.latlng[0]} long={data.latlng[1]} />
+              {wikiExtract && <WikipediaExtract content={wikiExtract} loading={wikiExtractPending} />}
+            </DescriptionGrid>
           </CardsContainer>
         )}
       </>
@@ -99,5 +101,14 @@ const CountryInformations = styled.div`
 
   @media (min-width: ${(p) => p.theme.media.lg}px) {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+`
+const DescriptionGrid = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-gap: 20px;
+
+  @media (min-width: ${(p) => p.theme.media.lg}px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `

@@ -6,8 +6,6 @@ import path from 'path'
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
-  console.log('process env', process.env)
-
   return {
     plugins: [
       react({

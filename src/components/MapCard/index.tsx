@@ -15,12 +15,12 @@ const MapCard: React.FC<MapCardProps> = ({ name, lat, long }) => {
     <StyledCard>
       <iframe
         width="100%"
-        height="500"
-        style={{ border: 0 }}
+        height="100%"
+        style={{ border: 0, minHeight: 300 }}
         loading="lazy"
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
-        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyC7JMQbO9CcFa363Z1mEb4QksRu7EMsUfY
+        src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_API_KEY}
     &center=${lat},${long}&zoom=5&q=${serializedName}&language=en`}
       ></iframe>
     </StyledCard>
