@@ -29,6 +29,6 @@ export default defineConfig(({ mode }) => {
         '@routes': path.resolve(__dirname, './src/routes')
       }
     },
-    base: '/world.io/'
+    base: process.env.VITE_BASE_URL
   }
 })
